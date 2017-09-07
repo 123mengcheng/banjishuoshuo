@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .navbar .container-fluid .navbar-header a{margin-left: 100px;}
+        .navbar .container-fluid .navbar-collapse .navbar-right li:last-child{margin-right: 100px;}
+        .container{margin-left: 120px;margin-right: 120px;padding-top: 70px;}
+        .container ul{list-style: none;margin-left: -40px;}
+        .container ul li:last-child{margin-bottom: 25px;}
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">web1704班级留言</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">全部留言<span class="sr-only">(current)</span></a></li>
+                <%if(username==undefined){%>
+                <li></li>
+                <%}else{%>
+                <li><a href="/wode">我的留言</a></li>
+                <%}%>
+                <li><a href="#">成员列表</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <%if(username==undefined){%>
+                <li class="active"><a href="/regist">注册</a></li>
+                <li><a href="/login">登录</a></li>
+                <%}else{%>
+                <li><a href="#">欢迎你:<%=username%></a></li>
+                <li><a href="/back">退出</a></li>
+                <%}%>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <h2>更改头像:</h2>
+    <form action="/cut" >
+        <div class="form-group">
+            <label for="exampleInputFile">用户头像</label>
+            <input type="file" id="exampleInputFile">
+        </div>
+        <button type="submit" class="btn btn-default">上传</button>
+    </form>
+
+
+    <p class="copy">&copy;2016 Company,Inc.</p>
+</div>
+
+</body>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+
+</html>

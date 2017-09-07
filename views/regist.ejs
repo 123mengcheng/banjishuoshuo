@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .navbar .container-fluid .navbar-header a{margin-left: 100px;}
+        .navbar .container-fluid .navbar-collapse .navbar-right li:last-child{margin-right: 100px;}
+        .container{margin-left: 120px;margin-right: 120px;padding-top: 70px;}
+        .container form .form-group input{width: 75%}
+        .container p{margin-top: 50px;}
+        .container .span{background-color: lightpink;color: red;}
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">web1704班级说说</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">全部说说<span class="sr-only">(current)</span></a></li>
+                <li><a href="#">我的说说</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/regist">注册</a></li>
+                <li><a href="/login">登录</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+    <h2>注册账号:</h2><br>
+    <form action="/doRegist">
+        <fieldset>
+            <div class="form-group">
+                <label>用户名</label>
+                <input type="text" class="form-control" name="uname" id="uname" placeholder="请输入用户名,可用中文,用户名不可与其他人重复">
+            </div>
+            <div class="form-group">
+                <label>密码</label>
+                <input type="password" class="form-control" name="pwd" id="pwd" placeholder="至少六位">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox">遵守协议内容
+                </label>
+            </div>
+            <button type="submit" class="btn btn-default" id="regist">注册</button>
+        </fieldset>
+    </form>
+    <%if(dirnames!=""){%>
+    <span class="span"><%=dirnames%></span>
+    <%}else{%>
+    <span></span>
+    <%}%>
+
+    <p class="copy">&copy;2016 Company,Inc.</p>
+</div>
+
+</body>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<!--<script type="text/javascript" >-->
+    <!--//给注册节点添加事件-->
+    <!--$("#regist").on("click",function(){-->
+<!--//        alert(111);-->
+        <!--//发送Ajax请求-->
+        <!--$.ajax({-->
+            <!--url:"/doRegist",-->
+            <!--type:"get",-->
+            <!--data:{-->
+                <!--"uname":$("#uname").val(),-->
+                <!--"pwd":$("#pwd").val()-->
+            <!--},-->
+            <!--success:function(result){-->
+                <!--if(result =="-1"){-->
+                    <!--alert("注册失败！");-->
+                <!--}else if(result =="1"){-->
+                    <!--//跳转到登录页面-->
+                    <!--window.location.href="/";-->
+                    <!--alert("注册成功！将自动跳转到首页");-->
+                <!--}-->
+            <!--}-->
+        <!--})-->
+    <!--})-->
+
+<!--</script>-->
+</html>

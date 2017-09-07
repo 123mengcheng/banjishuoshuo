@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .navbar .container-fluid .navbar-header a{margin-left: 100px;}
+        .navbar .container-fluid .navbar-collapse .navbar-right li:last-child{margin-right: 100px;}
+        .middle{width: 100%;background-color:#EEEEEE;margin-top: -20px;}
+        .middle .neirong{margin-left: 130px;margin-right: 120px;padding-top:100px;padding-bottom:50px;}
+        .middle .neirong .left{float: left;width: 50%;}
+        .middle .neirong .left img{float: left;}
+        .middle .neirong .right input{width: 100%}
+        .middle .neirong .right p{font-size:20px;margin-bottom: 15px;}
+        .bottom{width: 100%;}
+        .bottom .row{margin-left: 120px;margin-right: 120px;padding-top:40px;padding-bottom:50px;}
+        .bottom .row .col-md-4 h4{margin-left: -195px;}
+        .bottom .row .col-md-4 ul{list-style: none;margin-left: -55px;}
+        .bottom .row .col-md-4 ul li img,h3{display: inline-block;}
+        .bottom .row .col-md-4 button{margin-left: -20px;margin-bottom: 25px;}
+        .bottom .copy {margin-left: 130px;margin-right: 120px;}
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">web1704班级留言</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">全部留言<span class="sr-only">(current)</span></a></li>
+                <%if(username==undefined){%>
+                    <li></li>
+                <%}else{%>
+                    <li><a href="/wode">我的留言</a></li>
+                <%}%>
+                <li><a href="#">成员列表</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <%if(username==undefined){%>
+                    <li class="active"><a href="/regist">注册</a></li>
+                    <li><a href="/login">登录</a></li>
+                <%}else{%>
+                    <li><a href="#">欢迎你:<%=username%></a></li>
+                    <li><a href="/back">退出</a></li>
+                <%}%>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="middle">
+    <div class="neirong">
+        <%if(username==undefined){%>
+            <div class="left" >
+                <img src="images/touxiang.png" width="100" height="100">
+                <h1>欢迎!</h1><br><br>
+                <p>
+                    班级留言是我们交流的平台,欢迎注册登录,请大家畅所<br>欲言.
+                </p>
+                <button type="button" class="btn btn-primary">注册&gt;&gt;</button>
+            </div>
+            <div class="right">
+                <p>已有账号登陆</p>
+                <form action="/doLogin">
+                    <fieldset>
+                        <div class="form-group">
+                            <label>用户名</label>
+                            <input type="text" class="form-control" name="uname" id="uname" placeholder="请输入用户名">
+                        </div>
+                        <div class="form-group">
+                            <label>密码</label>
+                            <input type="password" class="form-control" name="pwd" id="pwd" placeholder="至少六位">
+                        </div>
+                        <button type="submit" class="btn btn-default" id="regist">登陆</button>
+                    </fieldset>
+                </form>
+
+
+
+            </div>
+        <%}else{%>
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="/changeTou"><img src="images/touxiang.png" width="100" height="100"></a>
+                </div>
+                <div class="col-md-10">
+                    <p><%=username%></p>
+                    <form action="/doFabiao" method="get">
+                        <!--<input type="text" name="uname" >-->
+                        <p>
+                            <textarea name="shuo" class="form-control" rows="5" ></textarea>
+                        </p>
+                        <input type="submit" class="btn btn-success" value="发表留言">
+                    </form>
+                </div>
+            </div>
+        <%}%>
+    </div>
+</div>
+
+<div class="bottom">
+    <div class="row">
+        <nav>
+            <ul class="pagination">
+                <%for(var i=0;i<liuyan.length/6;i++){%>
+                    <%if(liuyan.length/6!=0){%>
+                        <li class="active"><a href="/fenye?n=<%=i+1%>"><%=i+1%><span class="sr-only"></span></a></li>
+                    <%}%>
+                <%}%>
+            </ul>
+        </nav>
+        <%for(var i=0;i<fenye.length;i++){%>
+        <div class="col-md-4">
+            <ul>
+                <%if(fenye[i]!=undefined){%>
+                    <li><img src="/images/touxiang-.jpg" width="50" height="50"><h3><%=fenye[i].uname%>说:</h3></li>
+                    <li><%=fenye[i].shuo%></li>
+                    <li><%=fenye[i].time%></li>
+                <%}else{%>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                <%}%>
+            </ul>
+            <button type="button" class="btn btn-default btn-sm">查看详细</button>
+        </div>
+        <%}%>
+
+    </div>
+    <p class="copy">&copy;2016 Company,Inc.</p>
+</div>
+
+</body>
+</html>
